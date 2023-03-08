@@ -10,10 +10,7 @@ public class OrderProduct {
     @EmbeddedId
     private OrderProductPK pk;
     private Integer quantity;
-
-    public OrderProduct() {
-
-    }
+    private double price;
 
     public OrderProduct(Order order, Product product, Integer quantity) {
         pk = new OrderProductPK();
@@ -39,7 +36,7 @@ public class OrderProduct {
     public void setPk(OrderProductPK pk) {
         this.pk = pk;
     }
-
+//
     public Integer getQuantity() {
         return quantity;
     }
@@ -47,4 +44,7 @@ public class OrderProduct {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+
+
 }
