@@ -3,7 +3,9 @@ package com.mindthecode.firstproject.OrdersProject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 @RestController
 public class ProductsController {
@@ -52,6 +54,14 @@ public class ProductsController {
 
         return res;
 
+    }
+
+    @PutMapping("/products/{id}")
+    public Product update(@PathVariable Integer id, @RequestBody Product product) {
+        if (!id.equals(product.getProductId())) {
+            throw new HttpClientErrorException(HttpStatusCode.valueOf(400), "id in path does not patch id in body");
+        }
+        return productRepository.save(product);
     }
 
         @DeleteMapping("/products/{id}")
