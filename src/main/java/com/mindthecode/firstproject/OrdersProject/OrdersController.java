@@ -22,9 +22,6 @@ public class OrdersController {
 
     }
 
-    public Order putNewProductToOrder(Integer orderId, Product product) {}
-
-
     @DeleteMapping("/orders/{id}")
     public void delete(@PathVariable Integer id) {
         Order match = (Order) repo.findById(id)
