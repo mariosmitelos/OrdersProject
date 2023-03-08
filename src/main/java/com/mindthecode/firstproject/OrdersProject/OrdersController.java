@@ -6,27 +6,27 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class OrdersController {
 
-    private final OrderRepository repo;
+    private final OrderRepository orderRepository;
 
-    public OrdersController(OrderRepository repo) {
+    public OrdersController(OrderRepository orderRepository) {
 
-        this.repo = repo;
+        this.orderRepository = orderRepository;
 
     }
 
     @PostMapping("/orders/orderId")
 
-    public Order saveNewOrder(@PathVariable Integer orderId, @RequestBody Order order) {
+    public Order saveNewOrder(@RequestBody Order order) {
 
-        return (Order) repo.save(order);
+        return orderRepository.save(order);
 
     }
 
     @DeleteMapping("/orders/{id}")
     public void delete(@PathVariable Integer id) {
-        Order match = (Order) repo.findById(id)
+        Order match = orderRepository.findById(id)
                 .orElseThrow();
-        repo.delete(match);
+        orderRepository.delete(match);
     }
 
 

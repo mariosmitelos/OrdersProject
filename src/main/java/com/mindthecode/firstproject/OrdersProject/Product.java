@@ -10,7 +10,6 @@ public class Product {
     private Integer productId;
     private String productName;
     private double productPrice;
-
     private String productDescription;
 
 
